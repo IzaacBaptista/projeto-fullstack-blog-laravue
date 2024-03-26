@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 
-
 class ArticleController extends Controller
 {
     public function index()
