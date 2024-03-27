@@ -11,7 +11,7 @@
                 </div>
 
             </div>
-            
+
             <div class="sidebar d-grid">
                 <h3 class="title featured-content-title">Artigos mais lidos</h3>
             </div>

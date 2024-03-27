@@ -2,13 +2,13 @@
      <footer class="footer section">
 
         <div class="footer-container container d-grid">
-            
+
             <div class="company-data">
                 <a href="./index.html">
                     <h2 class="logo">Codigo Simples</h2>
                 </a>
                 <p class="company-description">Programação não é só código.</p>
-                
+
                 <ul class="list social-media">
                     <li class="list-item">
                         <a href="https://www.instagram.com/blogcodigosimples/" class="list-link" target="_blank"><i class="ri-instagram-line"></i></a>
@@ -37,7 +37,7 @@
 
             <div>
                 <h6 class="title footer-title">LINKS</h6>
-                
+
                 <ul class="footer-list list">
                     <li class="list-item">
                         <a href="./index.html" class="list-link">Inicio</a>
@@ -59,7 +59,7 @@
 
             <div>
                 <h6 class="title footer-title">O BLOG</h6>
-                
+
                 <ul class="footer-list list">
                     <li class="list-item">
                         <a href="./saiba-mais.html" class="list-link">Saiba mais</a>
@@ -78,6 +78,6 @@
             </div>
 
         </div>
-        
+
     </footer>
 </template>
