@@ -8,7 +8,7 @@
             <div class="swiper">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    
+
                 </div>
                 <!-- Navigation buttons -->
                 <div class="swiper-button-prev swiper-controls"></div>

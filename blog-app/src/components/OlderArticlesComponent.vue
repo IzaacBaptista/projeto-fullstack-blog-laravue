@@ -16,5 +16,5 @@
 
         </div>
 
-    </section> 
+    </section>
 </template>
