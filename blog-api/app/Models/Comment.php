@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id_category',
-        'id_author',
-        'data',
-        'time_read',
-        'title',
-        'content',
-        'blockquote',
-        'image'
+        'id_article',
+        'id_user',
+        'name',
+        'email',
+        'comment'
     ];
 
     public function category()
@@ -30,8 +27,13 @@ class Article extends Model
         return $this->belongsTo(Author::class, 'id_author', 'id');
     }
 
-    public function comments()
+    public function article()
     {
-        return $this->hasMany(Comment::class, 'id_article', 'id');
+        return $this->belongsTo(Article::class, 'id_article', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

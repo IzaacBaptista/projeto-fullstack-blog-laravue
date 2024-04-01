@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
@@ -15,7 +16,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('author', 'category')->get();
+        $articles = Article::with('author', 'category', 'comments')->get();
 
         return ArticleResource::collection($articles);
     }
@@ -28,7 +29,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        $article = Article::with('author', 'category')->find($article->id);
+        $article = Article::with('author', 'category', 'comments')->find($article->id);
 
         return new ArticleResource($article);
     }

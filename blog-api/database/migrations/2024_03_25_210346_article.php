@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_category');
             $table->unsignedBigInteger('id_author');
-            $table->date('data');
+            $table->string('data');
             $table->string('time_read');
             $table->string('title');
             $table->text('content');
-            $table->string('blockquote');
-            $table->string('image');
+            $table->text('blockquote');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

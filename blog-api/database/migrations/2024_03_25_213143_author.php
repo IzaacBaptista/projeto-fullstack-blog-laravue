@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
             $table->string('name');
+            $table->string('surname')->nullable();
             $table->string('about');
             $table->string('image');
             $table->string('linkedin');
             $table->string('github');
             $table->string('instagram');
+            $table->string('contact')->nullable();
             $table->timestamps();
         });
     }
