@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             foreach ($json->export()['articles'] as $articleData) {
                 $category = Category::firstOrCreate([
                     'name' => $articleData['category'][0]['title'],
-                    'image' => 'app/images/categories/' . strtolower(str_replace(' ', '-', $articleData['category'][0]['title'])) . '.jpg'
+                    'image' => '/images/categories/' . strtolower(str_replace(' ', '-', $articleData['category'][0]['title'])) . '.jpg'
                 ]);
 
                 $content = '';
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
                     'title' => $articleData['title'] ?? null,
                     'content' => $content ?? null,
                     'blockquote' => $articleData['blockquote'] ?? null,
-                    'image' => 'app/images/featured/featured-' . $articleData['id'] . '.jpg',
+                    'image' => '/images/featured/featured-' . $articleData['id'] . '.jpg',
                     'updated_at' => $articleData['updated_at'] ?? null
                 ]);
             }
