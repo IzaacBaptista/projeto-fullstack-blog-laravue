@@ -2,6 +2,8 @@ import api from "./api";
 
 const resource = "/articles";
 
+export const allCategories = () => api.get("/categories");
+
 export const allArticles = () => api.get(resource);
 
 export const createArticle = (article) => api.post(resource, article);
