@@ -47,8 +47,6 @@
         const shuffledOtherArticles = shuffle(otherArticles);
         mostReadArticle.value = shuffledOtherArticles.slice(0, 5);
 
-        console.log('featuredArticle: ', featuredArticle);
-        console.log('mostReadArticle: ', mostReadArticle);
     });
 
     const shuffle = (array) => {
