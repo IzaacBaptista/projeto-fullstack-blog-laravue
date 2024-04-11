@@ -31,6 +31,7 @@
                 <h6 class="title footer-title">Principais Categorias</h6>
 
                 <ul class="footer-list list">
+                    <MainCategories v-for="(category, index) in popularTags" :key="category.id" :index="index" :category="category" />
                 </ul>
 
             </div>
@@ -81,3 +82,26 @@
         
     </footer>
 </template>
+<script setup>
+import { onMounted, ref } from "vue";
+import { allCategories } from "../http/blog-api";
+import MainCategories from "./articles/MainCategories.vue";
+
+const popularTags = ref([]);
+
+onMounted(async () => {
+  const response = await allCategories();
+  const categories = response.data.data;
+
+  const shuffledCategories = shuffle(categories);
+  popularTags.value = shuffledCategories.slice(0, 6);
+});
+
+const shuffle = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+  };
+</script>
