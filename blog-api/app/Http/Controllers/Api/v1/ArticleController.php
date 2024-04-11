@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Author;
-use App\Models\Category;
-use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
