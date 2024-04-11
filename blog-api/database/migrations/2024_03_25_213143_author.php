@@ -18,12 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('name');
             $table->string('surname')->nullable();
-            $table->string('about');
-            $table->string('image');
-            $table->string('linkedin');
-            $table->string('github');
-            $table->string('instagram');
-            $table->string('contact')->nullable();
+            $table->string('about')->nullable();
+            $table->string('image')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('github')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

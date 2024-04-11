@@ -23,6 +23,8 @@ return new class extends Migration
             $table->text('content');
             $table->text('blockquote');
             $table->string('image')->nullable();
+            $table->integer('views')->default(0);
+            $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

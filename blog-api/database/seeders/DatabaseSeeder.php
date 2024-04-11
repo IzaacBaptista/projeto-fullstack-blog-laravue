@@ -8,6 +8,7 @@ use App\Helpers\JsonReader;
 use App\Models\Category;
 use App\Models\Author;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,7 +34,14 @@ class DatabaseSeeder extends Seeder
                     'linkedin' => $authorData['author-linkedin'] ?? null,
                     'github' => $authorData['author-github'] ?? null,
                     'instagram' => $authorData['author-instagram'] ?? null,
-                    'contact' => $authorData['author-contact'] ?? null
+                    'email' => $authorData['author-email'] ?? null,
+                    'phone' => $authorData['author-phone'] ?? null
+                ]);
+
+                $usuario = User::create([
+                    'name' => $authorData['author-name'],
+                    'email' => $authorData['author-email'],
+                    'type' => 1
                 ]);
             }
         } else {
@@ -47,7 +55,7 @@ class DatabaseSeeder extends Seeder
             foreach ($json->export()['articles'] as $articleData) {
                 $category = Category::firstOrCreate([
                     'name' => $articleData['category'][0]['title'],
-                    'image' => '/images/categories/' . strtolower(str_replace(' ', '-', $articleData['category'][0]['title'])) . '.jpg'
+                    'image' => '/images/categories/' . strtolower(str_replace([' ', '/'], '-', $articleData['category'][0]['title'])) . '.jpg'
                 ]);
 
                 $content = '';
