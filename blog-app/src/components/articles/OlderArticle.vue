@@ -3,7 +3,7 @@
     <div class="older-posts-article-image-wrapper">
         <img :src="article.image" alt="" class="article-image">
     </div>
-
+    <span class="article-category">{{ article.category.name }}</span>
     <div class="article-data-container">
         <div class="article-data">
             <span>{{ article.data }}</span>
