@@ -1,5 +1,8 @@
 <template>
-     <footer class="footer section">
+    <br>
+
+    <footer class="footer section">
+    <br>
 
         <div class="footer-container container d-grid">
             

@@ -207,7 +207,7 @@ body.light-theme{
 }
 
 .section:not(.featured-articles){
-    padding-block: 5rem;
+    padding-block: 0.5rem;
 }
 
 .d-grid{
