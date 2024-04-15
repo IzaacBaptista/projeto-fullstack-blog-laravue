@@ -3,7 +3,7 @@
     <NavbarComponent />
     <SearchComponent />
     <CategoriesButtonsComponent />
-    <OlderArticlesComponent />
+    <ArticlesByCategoryComponent />
     <FooterComponent />
 </template>
 
@@ -14,7 +14,7 @@
     import NavbarComponent from "../components/NavbarComponent.vue";
     import SearchComponent from "../components/SearchComponent.vue";
     import CategoriesButtonsComponent from "../components/CategoriesButtonsComponent.vue";
-    import OlderArticlesComponent from "../components/OlderArticlesComponent.vue";
+    import ArticlesByCategoryComponent from "../components/ArticlesByCategoryComponent.vue";
     import FooterComponent from "../components/FooterComponent.vue";
 
     import { onMounted } from "vue";
