@@ -18,14 +18,14 @@
 
         </div>
 
-    </section> 
+    </section>
 </template>
 
 <script setup>
     import { onMounted, ref } from "vue";
     import { allArticles } from "../http/blog-api";
     import ArticlesByCategory from "./articles/ArticlesByCategory.vue";
-    
+
     const articlesByCategory = ref([]);
 
     onMounted(async () => {
@@ -33,5 +33,5 @@
         const articles = response.data.data;
         articlesByCategory.value = articles
     });
-   
+
 </script>
