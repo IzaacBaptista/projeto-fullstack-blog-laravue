@@ -2,8 +2,7 @@
     <HeadComponent />
     <NavbarComponent />
     <SearchComponent />
-    <CategoriesButtonsComponent />
-    <ArticlesByCategoryComponent />
+    <ArticleReadComponent />
     <FooterComponent />
 </template>
 
@@ -13,7 +12,6 @@
     import HeadComponent from "../components/HeadComponent.vue";
     import NavbarComponent from "../components/NavbarComponent.vue";
     import SearchComponent from "../components/SearchComponent.vue";
-    import CategoriesButtonsComponent from "../components/CategoriesButtonsComponent.vue";
-    import ArticlesByCategoryComponent from "../components/ArticlesByCategoryComponent.vue";
+    import ArticleReadComponent from "../components/ArticleReadComponent.vue";
     import FooterComponent from "../components/FooterComponent.vue";
 </script>

@@ -9,19 +9,19 @@
           <div class="menu" id="menu">
               <ul class="list">
                   <li class="list-item">
-                      <a href="./index.html" class="list-link current">Inicio</a>
+                      <a href="/" class="list-link">Inicio</a>
                   </li>
                   <li class="list-item">
-                      <a href="./categorias.html" class="list-link">Categorias</a>
+                      <a href="/categories" class="list-link">Categorias</a>
                   </li>
                   <li class="list-item">
-                      <a href="./artigos.html" class="list-link">Artigos</a>
+                      <a href="/articles" class="list-link">Artigos</a>
                   </li>
                   <li class="list-item">
-                      <a href="./contato.html" class="list-link">Contato</a>
+                      <a href="/contact" class="list-link">Contato</a>
                   </li>
                   <li class="list-item">
-                      <a href="./saiba-mais.html" class="list-link">Saiba mais</a>
+                      <a href="/more" class="list-link">Saiba mais</a>
                   </li>
               </ul>
           </div>
@@ -51,4 +51,22 @@
   </header>
 </template>
   
-  
+<script>
+
+//logic to set current link
+
+const links = document.querySelectorAll('.list-link');
+
+//get url from window object
+const url = window.location.pathname;
+
+//get href from each link
+links.forEach(link => {
+    const href = link.getAttribute('href');
+    // console.log(href);
+    if (href === url) {
+        link.classList.add('current');
+    }
+});
+
+</script>

@@ -1,13 +1,20 @@
 <template>
     <section class="older-posts section">
-        <div class="container">
-            <h2 class="title section-title" data-name="Artigos mais antigos">Artigos mais antigos</h2>
+       
+        <div class="container" style="padding-top:10%;">
+            <div class="title-and-sort">
+                <h2 class="title section-title" data-name="Todos os artigos" style="width:50%">Todos os artigos</h2>
+                <select id="sortSelector" onchange="sortArticles()">
+                    <option value="recent">Mais recentes</option>
+                    <option value="oldest">Mais antigos</option>
+                </select>
+            </div>
             <div class="older-posts-grid-wrapper d-grid">
-                <a v-for="(article, index) in olderArticle" 
+                <a v-for="(article, index) in articles" 
                     :article="article" 
                     :key="article.id" 
-                    :index="index" 
-                    :href="'./article/' + article.id" 
+                    :index="index"  
+                    :href="'./article/' + article.id"
                     class="article d-grid"
                 >
                     <div class="older-posts-article-image-wrapper">
@@ -28,33 +35,30 @@
                         </i>
                     </div>
                     <span class="article-category">{{ article.category.name }}</span>
-                    </a>
-            </div>
-            <div class="see-more-container">
-                <a href="./artigos.html" class="btn see-more-btn place-items-center">
-                    Veja mais
-                    <i class="ri-arrow-right-s-line"></i>
                 </a>
             </div>
         </div>
-    </section> 
+    </section>
 </template>
 
 <script setup>
     import { onMounted, ref } from "vue";
     import { allArticles } from "../http/blog-api";
-    // import OlderArticle from "./articles/OlderArticle.vue";
-    
-    const olderArticle = ref([]);
 
-    onMounted(async () => {
-        const response = await allArticles();
-        const articles = response.data.data;
+    const articles = ref([]);
+    const currentPage = ref(1);
+    const totalPages = ref(2);
+    const perPage = ref(50);
+    const orderBy = ref('id');
+    const order = ref('desc');
 
-        const olderArticlesList = articles.slice(0, Math.min(articles.length, 10));
-        olderArticlesList.sort(() => Math.random() - 0.5);
+    const fetchArticles = async (page) => {
+        const response = await allArticles(page, perPage.value, orderBy.value, order.value);
+        articles.value = response.data.data;
+        totalPages.value = response.data.last_page;
+    }
 
-        const randomArticles = olderArticlesList.slice(0, 6);
-        olderArticle.value = randomArticles;
+    onMounted(() => {
+        fetchArticles(currentPage.value);
     });
 </script>

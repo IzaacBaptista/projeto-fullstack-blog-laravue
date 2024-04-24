@@ -1,8 +1,9 @@
 import './assets/main.css'
-// import './assets/style.css'
-// import './assets/swiper-bundle.min.css'
-
 import { createApp } from 'vue'
+import route from './router'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.use(route)
+app.mount('#app')

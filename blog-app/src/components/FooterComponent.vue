@@ -34,7 +34,15 @@
                 <h6 class="title footer-title">Principais Categorias</h6>
 
                 <ul class="footer-list list">
-                    <MainCategories v-for="(category, index) in popularTags" :key="category.id" :index="index" :category="category" />
+                    <a v-for="(category, index) in popularTags" 
+                        :key="category.id" 
+                        :index="index" 
+                        :category="category" 
+                        :href="'./categorias.html?category=' + category.name.toLowerCase()" 
+                        class="list-link"
+                    >
+                        <span>#{{ category.name }}</span>
+                    </a>
                 </ul>
 
             </div>
@@ -88,7 +96,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { allCategories } from "../http/blog-api";
-import MainCategories from "./articles/MainCategories.vue";
+// import MainCategories from "./articles/MainCategories.vue";
 
 const popularTags = ref([]);
 

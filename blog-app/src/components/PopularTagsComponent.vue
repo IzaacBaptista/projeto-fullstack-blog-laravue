@@ -3,7 +3,15 @@
       <div class="container">
         <h2 class="title section-title" data-name="Popular tags">Popular tags</h2>
         <div class="popular-tags-container d-grid">
-          <PopularTags v-for="(category, index) in popularTags" :key="category.id" :index="index" :category="category" />
+          <a v-for="(category, index) in popularTags" 
+            :key="category.id" 
+            :index="index" 
+            :category="category" 
+            :href="'./categorias.html?category=' + category.name.toLowerCase()" class="article"
+          >
+            <span class="tag-name">#{{ category.name }}</span>
+            <img :src="category.image" alt="" class="article-image">
+          </a>
         </div>
       </div>
     </section>
@@ -12,7 +20,6 @@
   <script setup>
   import { onMounted, ref } from "vue";
   import { allCategories } from "../http/blog-api";
-  import PopularTags from "./articles/PopularTags.vue";
   
   const popularTags = ref([]);
   

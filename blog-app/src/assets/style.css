@@ -202,6 +202,11 @@ a.google span{
     margin-bottom: var(--margin-sm);
 }
 
+.text-blue{
+    color: #0171d3;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 400px) {
     .form{
         padding: 20px 10px;

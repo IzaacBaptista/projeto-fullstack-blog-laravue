@@ -1,5 +1,8 @@
 <template>
-    <a :href="'./post.html?id=' + article.id" class="article swiper-slide">
+    <a :article="article" 
+    :key="article.id"   
+    :index="index" 
+    :href="'/article/' + article.id" class="article swiper-slide">
         <img :src="article.image" alt="" class="article-image">
         <span class="article-category">{{ article.category.name }}</span>
         <div class="article-data-container">
