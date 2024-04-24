@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('data');
             $table->string('time_read');
             $table->string('title');
-            $table->text('content');
             $table->text('blockquote');
             $table->string('image')->nullable();
             $table->integer('views')->default(0);

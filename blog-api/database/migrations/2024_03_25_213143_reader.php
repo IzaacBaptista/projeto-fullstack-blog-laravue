@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->timestamps();
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

@@ -23,9 +23,11 @@ class ArticleResource extends JsonResource
             'data' => $this->data,
             'time_read' => $this->time_read,
             'title' => $this->title,
-            'content' => $this->content,
             'blockquote' => $this->blockquote,
-            'image' => $this->image
+            'image' => $this->image,
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            'references' => ReferenceResource::collection($this->whenLoaded('references')),
+            'contents' => ContentResource::collection($this->whenLoaded('contents')),
         ];
     }
 }

@@ -8,6 +8,8 @@ use App\Helpers\JsonReader;
 use App\Models\Category;
 use App\Models\Author;
 use App\Models\Article;
+use App\Models\Content;
+use App\Models\Reference;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -58,29 +60,38 @@ class DatabaseSeeder extends Seeder
                     'image' => '/images/categories/' . strtolower(str_replace([' ', '/'], '-', $articleData['category'][0]['title'])) . '.jpg'
                 ]);
 
-                $content = '';
 
-                foreach ($articleData as $key => $value) {
-                    if (strpos($key, 'content-') === 0) {
-                        $content .= "<p>$value</p>";
-                    } elseif (strpos($key, 'referencia-') === 0) {
-                        $content .= "<p>- $value</p>";
-                    }
-                }
-
-                $content = rtrim($content);
-
-                Article::create([
+                $article = Article::create([
                     'id_category' => $category->id ?? null,
                     'id_author' => $author->id ?? null,
                     'data' => $articleData['data'] ?? null,
                     'time_read' => $articleData['time_read'] ?? null,
                     'title' => $articleData['title'] ?? null,
-                    'content' => $content ?? null,
                     'blockquote' => $articleData['blockquote'] ?? null,
                     'image' => '/images/featured/featured-' . $articleData['id'] . '.jpg',
                     'updated_at' => $articleData['updated_at'] ?? null
                 ]);
+
+                $contentKeys = preg_grep('/^content-\d+$/', array_keys($articleData));
+                foreach ($contentKeys as $key) {
+                    $contentNumber = explode('-', $key)[1];
+                    Content::create([
+                        'article_id' => $article->id,
+                        'content_number' => $contentNumber,
+                        'content' => $articleData[$key],
+                    ]);
+                }
+
+                $referenceKeys = preg_grep('/^referencia-\d+$/', array_keys($articleData));
+                foreach ($referenceKeys as $key) {
+                    $referenceNumber = explode('-', $key)[1];
+                    Reference::create([
+                        'article_id' => $article->id,
+                        'reference_number' => $referenceNumber,
+                        'reference' => $articleData[$key],
+                    ]);
+                }
+
             }
         } else {
             dd($json->export()['articles']);

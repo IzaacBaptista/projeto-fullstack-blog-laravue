@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_article');
-            $table->unsignedBigInteger('id_user');
-            $table->string('name');
-            $table->string('email');
-            $table->text('comment');             
+            $table->unsignedBigInteger('article_id');
+            $table->integer('reference_number');
+            $table->text('reference');
             $table->timestamps();
-            $table->foreign('id_article')->references('id')->on('articles');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('article_id')->references('id')->on('articles');
         });
     }
 

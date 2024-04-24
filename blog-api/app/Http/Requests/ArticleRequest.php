@@ -24,14 +24,18 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_category' => 'required|integer',
-            'id_author' => 'required|integer',
-            'data' => 'required|date',
+            'id_category' => 'nullable|integer',
+            'id_author' => 'nullable|integer',
+            'data' => 'nullable|date',
             'time_read' => 'nullable|integer',
-            'title' => 'required|string',
-            'content' => 'required|string',
+            'title' => 'nullable|string',
+            'content' => 'nullable|string',
             'blockquote' => 'nullable|string',
-            'image' => 'nullable|string'
+            'image' => 'nullable|string',
+            'pagination' => 'nullable|integer',
+            'per_page' => 'nullable|integer',
+            'order_by' => 'nullable|string',
+            'order' => 'nullable|string',
         ];
     }
 }

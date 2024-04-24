@@ -17,7 +17,6 @@ class Article extends Model
         'data',
         'time_read',
         'title',
-        'content',
         'blockquote',
         'image'
     ];
@@ -35,5 +34,15 @@ class Article extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'id_article', 'id');
+    }
+
+    public function references()
+    {
+        return $this->hasMany(Reference::class, 'article_id', 'id');
+    }
+
+    public function contents()
+    {
+        return $this->hasMany(Content::class, 'article_id', 'id');
     }
 }

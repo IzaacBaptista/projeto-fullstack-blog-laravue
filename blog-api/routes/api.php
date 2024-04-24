@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::apiResource('/articles', ArticleController::class);
     Route::apiResource('/categories', CategoryController::class);
+    Route::get('/article/{id}', [ArticleController::class, 'show']);
+    Route::get('/article/category/{id}', [ArticleController::class, 'showByCategory']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
