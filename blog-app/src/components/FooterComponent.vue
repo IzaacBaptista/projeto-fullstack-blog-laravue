@@ -38,7 +38,7 @@
                         :key="category.id" 
                         :index="index" 
                         :category="category" 
-                        :href="'./categorias.html?category=' + category.name.toLowerCase()" 
+                        :href="'/categories?category=' + category.id" 
                         class="list-link"
                     >
                         <span>#{{ category.name }}</span>
