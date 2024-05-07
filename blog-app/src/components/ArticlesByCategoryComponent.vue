@@ -41,14 +41,23 @@
 
 <script setup>
     import { onMounted, ref } from "vue";
-    import { allArticles } from "../http/blog-api";
+    import { allArticles, getArticlesByCategory } from "../http/blog-api";
 
     const articlesByCategory = ref([]);
+    const categoryId = ref(null);
 
     onMounted(async () => {
         const response = await allArticles();
         const articles = response.data.data;
-        articlesByCategory.value = articles
-    });
+        articlesByCategory.value = articles;
 
+        const url = window.location.href;
+        const regex = /\d+$/;
+        const match = url.match(regex);
+        if (match) {
+            categoryId.value = match[0];
+            const categoryArticlesResponse = await getArticlesByCategory(categoryId.value);
+            articlesByCategory.value = categoryArticlesResponse.data.data;
+        }
+    });
 </script>
