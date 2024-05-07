@@ -45,7 +45,6 @@ class ArticleController extends Controller
     {
         $articles = Article::with('author', 'category', 'comments', 'references', 'contents')
             ->where('id_category', $id)
-            ->inRandomOrder()
             ->limit(9)
             ->get();
 
