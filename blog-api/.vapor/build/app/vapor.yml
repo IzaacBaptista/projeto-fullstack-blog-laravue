@@ -10,7 +10,7 @@ environments:
             - subnet-04b43bafd22cee404
             - subnet-08bfa54325410db85
         security-groups:
-            - sg-0cr4and0m45b7e0
+            - sg-006d0dfe948d7331e
         build:
             - 'composer install --no-dev'
             - 'php artisan event:cache'
