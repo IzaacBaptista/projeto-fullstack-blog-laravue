@@ -1,0 +1,18 @@
+id: 66298
+name: fullstack-blog-laravue
+environments:
+    production:
+        database: 'blog-lara-vue'
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.3:al2'
+        subnets:
+            - subnet-04b43bafd22cee404
+            - subnet-08bfa54325410db85
+        security-groups:
+            - sg-0cr4and0m45b7e0
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'php artisan migrate --force'
+          # - 'npm ci && npm run build && rm -rf node_modules'

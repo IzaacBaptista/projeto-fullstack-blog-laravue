@@ -80,7 +80,7 @@
             </div>
             <div class="buttons buttons-container">
                <button v-if="articleRead.id != 1" class="btn btn-primary btn-previous" @click="previousArticle">Anterior</button>
-               <button v-if="showNextButton" class="btn btn-primary btn-next" @click="nextArticle" >Próximo</button>
+               <button v-if="showNextButton == true" class="btn btn-primary btn-next" @click="nextArticle" >Próximo</button>
             </div>
          </div>
     </div>
@@ -116,7 +116,7 @@
 </template>
   
 <script setup>
-  import { onMounted, ref } from "vue";
+  import { onMounted, ref, nextTick, watch  } from "vue";
   import { getArticle, getArticlesByCategory } from "../http/blog-api";
   import { useRoute, useRouter } from 'vue-router';
   import QuickReadArticle from "./articles/QuickReadArticle.vue";
@@ -125,10 +125,11 @@
   
   const articleRead = ref([]); 
   const quickReadArticle = ref([]);
+  const showNextButton = ref(false);
   
   const route = useRoute();
   const router = useRouter();
-  let showNextButton = false;
+  
   onMounted(async () => {
       const articleId = route.params.id;
       const response = await getArticle(articleId);
@@ -142,24 +143,22 @@
          const previousArticle = await getArticle(articleId - 1);
          articleRead.value.previousArticle = previousArticle.data;
       }
+      
       try {
          const nextArticle = await getArticle(Number(articleId) + 1);
          if (nextArticle.status === 200) {
                articleRead.value.nextArticle = nextArticle.data;
-               showNextButton = true;
+               showNextButton.value = true;
          } else {
-               console.log('Não há próximo artigo');
-               showNextButton = false;
+               showNextButton.value = false;
          }
       } catch (error) {
          console.error('Erro ao buscar o próximo artigo:', error);
-         showNextButton = false;
+         showNextButton.value = false;
       }
-  
+
       const categoryId = articleRead.value.category.id;
       const responseAll = await getArticlesByCategory(categoryId);
-      //tem que ser diferente do artigo atual
-      console.log(responseAll.data.data);
       responseAll.data.data.forEach((article) => {
           if (article.id === articleId) {
               responseAll.data.data.splice(article, 1);
@@ -167,16 +166,45 @@
       });
       quickReadArticle.value = responseAll.data.data;
   });
-  
+  p
   const previousArticle = async () => {
-      const previousArticleId = articleRead.value.previousArticle.id;
-      router.push(`/article/${previousArticleId}`);
+      // if (articleRead.value.previousArticle) {
+          const previousArticleId = articleRead.value.previousArticle.id;
+          console.log('previousArticleId: ', previousArticleId)
+          await loadArticle(previousArticleId);
+          router.push(`/article/${previousArticleId}`);
+      // }
   };
   
-   const nextArticle = async () => {
-       const nextArticleId = articleRead.value.nextArticle.id;
-       router.push(`/article/${nextArticleId}`);
-   };
+  const nextArticle = async () => {
+      // if (articleRead.value.nextArticle) {
+          const nextArticleId = articleRead.value.nextArticle.id;
+          await loadArticle(nextArticleId);
+          router.push(`/article/${nextArticleId}`);
+      // }
+  };
+  
+  const loadArticle = async (articleId) => {
+      const response = await getArticle(articleId);
+      console.log('response: ', response)
+      articleRead.value = response.data;
+
+      articleRead.value.contents.forEach((content) => {
+          content.content = content.content.replace(/<a/g, '<a target="_blank" class="text-blue"');
+      });
+  };
+  
+  // Função para forçar a atualização da interface do usuário após a atualização da variável showNextButton
+  const updateUI = async () => {
+      await nextTick(); // Aguarda a próxima atualização do DOM
+      // Força a atualização da interface do usuário
+  };
+  
+  // Chama a função updateUI após a atualização da variável showNextButton
+  watch(showNextButton, () => {
+      updateUI();
+  });
 </script>
+
   
   
